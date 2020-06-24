@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0,  minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>浩哥搜索</title>
+    <style>
+	html{	
+		font-family: "STKaiti";
+		background:url('https://api.uixsj.cn/bing/bing.php') no-repeat;
+		background-size:cover;
+		width:100vw;
+                height:100vh;
+		background-position: center top;
+		margin:0;
+	}
+	div.logo{
+		text-align:center;
+		margin-top: 66px;
+	 }    
+	.logo img {
+		height: 80px;
+	}
+        div#main{
+/*             height: 100vh; */
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            margin-top: -80px;
+        }
+
+        .form-inline{
+            text-align: center;
+            margin: 130px auto 20px;
+        }
+	#search{
+            width: 70%;
+	    text-align: center;
+ 	    line-height: 32px;	
+	    height: 32px;
+	    font-size: 18px;
+	    outline: none;
+	    border: none;
+	}
+	input:placeholder {
+	    color: #fafafa8a; 
+	} 
+	#searchengine{
+	    line-height: 32px;	
+	    height: 32px;	
+	}
+        #searchengineitems{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+	    max-width: 800px;
+        }
+        .pans,.jike,.life{
+            margin: 16px auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+         <img src="https://nav.hiqq.com.cn/static/logo2.png">
+    </div>
+    <div id="main">
+
+		<div id="searchid">		    
+	    	<div id="sform" class="form-inline" role="form">
+	    	        <input name="sears" id="search" type="text" placeholder="find it" onfocus="this.placeholder=''" onblur="this.placeholder='find it'" autocomplete="off" class="form-control input-lg">
+	    	        <button id="searchengine" value="百度" onclick="FindData();">百度</button>
+	    	</div>		   
+		<div id="searchengineitems">
+		        <input type="submit" value="百度" id="baidu" button="" class="btn btn-primary" onclick="displayDate(this)">
+<!-- 		        <input type="submit" value="dev谷歌" i="gogle" button="" class="btn btn-primary" onclick="displayDate(this)"> -->
+			<input type="submit" value="谷歌" id="google" button="" class="btn btn-primary" onclick="displayDate(this)">
+			<input type="submit" value="多吉" id="duoji" button="" class="btn btn-primary" onclick="displayDate(this)">
+			<input type="submit" value="360搜索" id="duoji" button="" class="btn btn-primary" onclick="displayDate(this)">
+		        <input type="submit" value="Yandex" id="Yandex" button="" class="btn btn-primary" onclick="displayDate(this)">
+		        <input type="submit" value="搜狗" id="sougou" button="" class="btn btn-primary" onclick="displayDate(this)">
+		    	<input type="submit" value="必应" id="biying" button="" class="btn btn-primary" onclick="displayDate(this)">
+		    	<input type="submit" value="Magi" id="Magi" button="" class="btn btn-primary" onclick="displayDate(this)">
+		        <input type="submit" value="微信" id="weixin" button="" class="btn btn-primary" onclick="displayDate(this)">
+		        <input type="submit" value="京东" id="jd" button="" class="btn btn-primary" onclick="displayDate(this)">
+		        <input type="submit" value="淘宝" id="taobao" button="" class="btn btn-primary" onclick="displayDate(this)">
+		        <input type="submit" value="知乎" id="zhihu" button="" class="btn btn-primary" onclick="displayDate(this)">
+		        <input type="submit" value="微博" id="weibo" button="" class="btn btn-primary" onclick="displayDate(this)">
+		        <input type="submit" value="豆瓣" id="douban" button="" class="btn btn-primary" onclick="displayDate(this)">
+            </div>
+            <div class="pans">
+                <input type="submit" value="大力盘" id="pangci" button="" class="btn btn-primary" onclick="displayDate(this)">
+                <input type="submit" value="fastsoso" id="fastsoso" button="" class="btn btn-primary" onclick="displayDate(this)">
+                <input type="submit" value="猪猪盘" id="zhuzhupan" button="" class="btn btn-primary" onclick="displayDate(this)">
+                <input type="submit" value="酷搜" id="zhuzhupan" class="btn btn-primary" onclick="displayDate(this)">
+                <input type="submit" value="B站搜索" id="bilibili" button="" class="btn btn-primary" onclick="displayDate(this)">
+                <input type="submit" value="热榜搜" id="tophub" buttobtn-primary" onclick="displayDate(this)"> 
+            </div>
+	    <div class="jike">
+                <input type="submit" value="极客搜索" id="tophub" buttobtn-primary" onclick="displayDate(this)"> 	
+                <input type="submit" value="Github" id="Github" button="" class="btn btn-primary" onclick="displayDate(this)">	
+		<input type="submit" value="鱼塘搜索" id="fish" button="" class="btn btn-primary" onclick="displayDate(this)">
+		<input type="submit" value="V2" id="Github" button="" class="btn btn-primary" onclick="displayDate(this)">
+     			 
+	    </div>
+	    <div class='life'>
+	    	<input type="submit" value="神马" id="duoji" button="" class="btn btn-primary" onclick="displayDate(this)">
+		<input type="submit" value="头条" id="duoji" button="" class="btn btn-primary" onclick="displayDate(this)">
+
+	    </div>
+    </div>
+    <script>
+        window.onkeydown = function (e) {  
+            let code = e.keyCode;  
+            if (code == 191) {
+		    document.getElementById("search").focus();  
+		    return false;
+	    	}
+        }
+        function displayDate(id){
+            var searchengine=document.getElementById('searchengine');
+            searchengine.innerHTML=id.value;
+            searchengine.value=id.value;
+        }
+        
+        function FindData(){
+            var search=document.getElementById('search');
+            var searchengine=document.getElementById('searchengine');
+            var query=search.value;
+            if(searchengine.value=="百度"){
+                window.open("https://www.baidu.com/s?wd="+query);
+            }else if(searchengine.value=="dev谷歌"){
+                window.open("https://search.sxisa.com/search?q="+query);
+	    }else if(searchengine.value=="谷歌"){
+                window.open("https://google.ywg.workers.dev/search?q="+query);    
+	    }else if(searchengine.value=="多吉"){
+                window.open("https://www.dogedoge.com/results?q="+query);  
+	    }else if(searchengine.value=="360搜索"){
+                window.open("https://www.so.com/s?q="+query);  
+	    }else if(searchengine.value=="神马"){
+                window.open("https://yz.m.sm.cn/s?q="+query);    
+            }else if(searchengine.value=="Yandex"){
+                window.open("https://yandex.com/search/?text="+query);
+            }else if(searchengine.value=="搜狗"){
+                window.open("https://www.sogou.com/web?query="+query);
+            }else if(searchengine.value=="必应"){
+                window.open("http://cn.bing.com/search?q="+query);
+            }else if(searchengine.value=="Magi"){
+                window.open("https://magi.com/search?q="+query);
+            }else if(searchengine.value=="微信"){
+                window.open("http://weixin.sogou.com/weixin?query="+query);
+            }else if(searchengine.value=="京东"){
+                window.open("http://search.jd.com/Search?enc=utf-8&keyword="+query);
+            }else if(searchengine.value=="淘宝"){
+                window.open("https://s.taobao.com/search?q="+query);
+            }else if(searchengine.value=="知乎"){
+                window.open("https://www.zhihu.com/search?q="+query);
+            }else if(searchengine.value=="微博"){
+                window.open("http://s.weibo.com/weibo/"+query);
+            }else if(searchengine.value=="豆瓣"){
+                window.open("https://www.douban.com/search?q="+query);
+            }else if(searchengine.value=="Github"){
+                window.open("https://github.com/search?q="+query);
+            // 网盘部分
+            }else if(searchengine.value=="大力盘"){
+                window.open("https://www.dalipan.com/search?keyword="+query);
+            }else if(searchengine.value=="fastsoso"){
+                window.open("https://www.fastsoso.cn/search?k="+query+'&s=1&t=-1');
+            }else if(searchengine.value=="B站搜索"){
+                window.open("https://search.bilibili.com/all?keyword="+query);
+            }else if(searchengine.value=="猪猪盘"){
+                window.open("http://www.zhuzhupan.com/search?query="+query);
+            }else if(searchengine.value=="酷搜"){
+                window.open("https://www.kolsou.com/search?q="+query);
+            }else if(searchengine.value=="热榜搜"){
+                window.open("https://tophub.today/search?q="+query);
+            }else if(searchengine.value=="极客搜索"){
+                window.open("https://s.geekbang.org/search/c=0/k="+query+'/t=');
+            }else if(searchengine.value=="鱼塘搜索"){
+                window.open("https://mo.fish/main/search/"+query);
+            }else if(searchengine.value=="V2"){
+                window.open("https://google.ywg.workers.dev/search?q=site:v2ex.com/t "+query);
+	    }else if(searchengine.value=="头条"){
+                window.open("https://m.toutiao.com/search?keyword="+query);
+	    }
+							    
+        }
+        
+        document.onkeyup = function (e) {  
+            if (window.event)//如果window.event对象存在，就以此事件对象为准  
+                e = window.event;  
+            var code = e.charCode || e.keyCode;  
+            if (code == 13) FindData();           
+        } 
+  	
+        </script>
+</body>
+</html>
